@@ -1,5 +1,5 @@
 import { Exchange } from 'urql'
-import { fromPromise, map, mergeMap, pipe } from 'wonka'
+import { fromPromise, map, mergeMap, pipe, empty } from 'wonka'
 
 type GetHeaders = () => Promise<Record<string, string>>
 
@@ -10,10 +10,19 @@ export const asyncHeaderExchange =
     pipe(
       operations$,
       mergeMap((operation) => {
+        if (operation.kind === 'teardown') {
+          return pipe(
+            empty,
+            map(() => operation),
+          )
+        }
         return pipe(
           fromPromise(getHeaders()),
           map((headers) => {
             if (!operation.context.fetchOptions) {
+              console.warn(
+                '[urql-exchange-async-headers] WARNING: operation.context.fetchOptions is not defined',
+              )
               operation.context.fetchOptions = {
                 headers: {},
               }
