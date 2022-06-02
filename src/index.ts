@@ -3,6 +3,11 @@ import { fromPromise, map, mergeMap, pipe, empty } from 'wonka'
 
 type GetHeaders = () => Promise<Record<string, string>>
 
+/**
+ * asyncHeaderExchange - A urql exchange that adds the headers from promise value.
+ *
+ * @param getHeaders - A function that returns a promise that resolves to a headers object.
+ */
 export const asyncHeaderExchange =
   (getHeaders: GetHeaders): Exchange =>
   ({ forward }) =>

@@ -18,7 +18,16 @@
     "urql": "^2.2.1",
     "wonka": "^4.0.15"
   },
+  "files": [
+    "dist/*.js",
+    "dist/*.map",
+    "dist/*.ts",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
+    "build": "tsc",
     "test": "ava"
   }
 }
