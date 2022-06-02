@@ -20,7 +20,7 @@ export const asyncHeaderExchange =
             }
             if (typeof operation.context.fetchOptions === 'function') {
               console.warn(
-                '[urql-exchange-async-headers] no headers are attached because `operation.context.fetchOptions` is a function',
+                '[urql-exchange-async-headers] WARNING: no headers are attached because `operation.context.fetchOptions` is a function',
               )
               return operation
             }
