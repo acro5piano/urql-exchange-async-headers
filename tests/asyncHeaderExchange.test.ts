@@ -70,3 +70,33 @@ test('it does not add header asynchronously if fetchOptions function defined', (
     await client.query(`{ hello }`).toPromise()
   })
 })
+
+test('it merges existing headers', (t) => {
+  return new Promise(async (resolve) => {
+    const port = await getPort()
+    serve(port, (req) => {
+      t.is(req.headers['foo'], 'bar')
+      t.is(req.headers['baz'], 'qux')
+      resolve()
+    })
+
+    const client = createClient({
+      url: `http://localhost:${port}/graphql`,
+      fetchOptions: {
+        headers: {
+          baz: 'qux',
+        },
+      },
+      exchanges: [
+        asyncHeaderExchange(async () => {
+          return {
+            foo: 'bar',
+          }
+        }),
+        ...defaultExchanges,
+      ],
+    })
+
+    await client.query(`{ hello }`).toPromise()
+  })
+})
