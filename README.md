@@ -64,3 +64,26 @@ const urqlClient = createClient({
   ],
 })
 ```
+
+### Add AppSync Auth header
+
+```typescript
+import { Auth } from 'aws-amplify'
+import { createClient, defaultExchanges } from 'urql'
+import { asyncHeaderExchange } from 'urql-exchange-async-headers'
+
+const urqlClient = createClient({
+  url: 'http://localhost:1234/graphql',
+  exchanges: [
+    asyncHeaderExchange(async () => {
+      const session = await Auth.currentSession()
+      return {
+        authorization: currentSession.getIdToken().getJwtToken(),
+        'x-amz-date': new Date().toISOString(),
+        'x-amz-user-agent': 'URQL',
+      }
+    }),
+    ...defaultExchanges,
+  ],
+})
+```
