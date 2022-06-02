@@ -1,0 +1,13 @@
+{
+  "name": "urql-exchange-async-headers",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:acro5piano/urql-exchange-async-headers",
+  "author": "Kay Gosho <ketsume0211@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.7.2",
+    "urql": "^2.2.1",
+    "wonka": "^4.0.15"
+  }
+}
