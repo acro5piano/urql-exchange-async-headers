@@ -73,7 +73,7 @@ import { createClient, defaultExchanges } from 'urql'
 import { asyncHeaderExchange } from 'urql-exchange-async-headers'
 
 const urqlClient = createClient({
-  url: 'http://localhost:1234/graphql',
+  url: 'https://xxxxxxxxxxxxxxxxxxxxxxxxxx.appsync-api.ap-northeast-1.amazonaws.com/graphql',
   exchanges: [
     asyncHeaderExchange(async () => {
       const session = await Auth.currentSession()
