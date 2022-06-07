@@ -3,7 +3,7 @@
 [![test](https://github.com/acro5piano/urql-exchange-async-headers/actions/workflows/test.yml/badge.svg)](https://github.com/acro5piano/knex-little-logger/actions/workflows/test.yml)
 ![npm (tag)](https://img.shields.io/npm/v/urql-exchange-async-headers/latest)
 
-A urql exchange that adds the headers from promise value.
+A urql exchange which adds headers from promise value.
 
 # Install
 
