@@ -76,7 +76,7 @@ const urqlClient = createClient({
   url: 'https://xxxxxxxxxxxxxxxxxxxxxxxxxx.appsync-api.ap-northeast-1.amazonaws.com/graphql',
   exchanges: [
     asyncHeaderExchange(async () => {
-      const session = await Auth.currentSession()
+      const currentSession = await Auth.currentSession()
       return {
         authorization: currentSession.getIdToken().getJwtToken(),
         'x-amz-date': new Date().toISOString(),
