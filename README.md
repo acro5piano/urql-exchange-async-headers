@@ -35,6 +35,11 @@ const urqlClient = createClient({
     }),
     ...defaultExchanges,
   ],
+  // Make sure you have static headers.
+  // If headers returns a function, this exchange does not work.
+  fetchOptions: {
+    headers: {},
+  },
 })
 ```
 
