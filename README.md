@@ -22,23 +22,25 @@ yarn add urql-exchange-async-headers
 You can need to add the `asyncHeaderExchange`, that this package exposes to your urql Client.
 
 ```typescript
-import { createClient, defaultExchanges } from 'urql'
+import { createClient, cacheExchange, fetchExchange } from 'urql'
 import { asyncHeaderExchange } from 'urql-exchange-async-headers'
 
 const urqlClient = createClient({
   url: 'http://localhost:1234/graphql',
   exchanges: [
+    cacheExchange,
     asyncHeaderExchange(() => {
       return Promise.resolve({
         foo: 'bar',
       })
     }),
-    ...defaultExchanges,
+    fetchExchange,
   ],
-  // Make sure you have static headers.
-  // If headers returns a function, this exchange does not work.
+  // You can add synchronous headers along with async headers. They will be merged at runtime.
   fetchOptions: {
-    headers: {},
+    headers: {
+      foo: 'bar',
+    },
   },
 })
 ```
