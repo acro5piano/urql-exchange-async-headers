@@ -1,50 +1,33 @@
-import { Exchange } from 'urql'
-import { fromPromise, map, mergeMap, pipe, empty } from 'wonka'
+import { Exchange, mapExchange, Operation, makeOperation } from 'urql'
 
-type GetHeaders = () => Promise<Record<string, string>>
+type GetHeaders = (operation: Operation) => Promise<Record<string, string>>
 
 /**
  * asyncHeaderExchange - A urql exchange that adds the headers from promise value.
  *
- * @param getHeaders - A function that returns a promise that resolves to a headers object.
+ * @param getHeaders {GetHeaders} - A function that returns a promise that resolves to a headers object.
  */
-export const asyncHeaderExchange =
-  (getHeaders: GetHeaders): Exchange =>
-  ({ forward }) =>
-  (operations$) =>
-    pipe(
-      operations$,
-      mergeMap((operation) => {
-        if (operation.kind === 'teardown') {
-          return pipe(
-            empty,
-            map(() => operation),
-          )
+export const asyncHeaderExchange = (getHeaders: GetHeaders): Exchange =>
+  mapExchange({
+    async onOperation(operation) {
+      if (typeof operation.context.fetchOptions === 'function') {
+        operation.context.fetchOptions = operation.context.fetchOptions()
+      }
+      if (!operation.context.fetchOptions) {
+        operation.context.fetchOptions = {
+          headers: {},
         }
-        return pipe(
-          fromPromise(getHeaders()),
-          map((headers) => {
-            if (!operation.context.fetchOptions) {
-              console.warn(
-                '[urql-exchange-async-headers] WARNING: operation.context.fetchOptions is not defined',
-              )
-              operation.context.fetchOptions = {
-                headers: {},
-              }
-            }
-            if (typeof operation.context.fetchOptions === 'function') {
-              console.warn(
-                '[urql-exchange-async-headers] WARNING: no headers are attached because `operation.context.fetchOptions` is a function',
-              )
-              return operation
-            }
-            Object.assign(operation.context.fetchOptions.headers!, {
-              ...operation.context.fetchOptions.headers!,
-              ...headers,
-            })
-            return operation
-          }),
-        )
-      }),
-      forward,
-    )
+      }
+      const headers = await getHeaders(operation)
+      return makeOperation(operation.kind, operation, {
+        ...operation.context,
+        fetchOptions: {
+          ...operation.context.fetchOptions,
+          headers: {
+            ...operation.context.fetchOptions.headers,
+            ...headers,
+          },
+        },
+      })
+    },
+  })
