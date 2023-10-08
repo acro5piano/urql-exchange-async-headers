@@ -7,17 +7,17 @@
   "author": "Kay Gosho <ketsume0211@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^17.0.38",
-    "ava": "^4.2.0",
-    "esbuild": "^0.14.42",
+    "@types/node": "^20.8.3",
+    "ava": "^5.3.1",
+    "esbuild": "^0.19.4",
     "esbuild-register": "^3.3.2",
-    "get-port": "^6.1.2",
+    "get-port": "^7.0.0",
     "graphql": "^16.5.0",
-    "isomorphic-unfetch": "^3.1.0",
+    "isomorphic-unfetch": "^4.0.2",
     "react": "^18.1.0",
-    "typescript": "^4.7.2",
+    "typescript": "^5.2.2",
     "urql": "^4.0.5",
-    "wonka": "^4.0.15"
+    "wonka": "^6.3.4"
   },
   "files": [
     "dist/*.js",
