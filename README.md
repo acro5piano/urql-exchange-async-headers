@@ -5,6 +5,8 @@
 
 A thin urql exchange which adds headers from promise value, using `mapExchange` from the official URQL package.
 
+Note: You need to install `URQL >= 3.1.0`. 
+
 # Install
 
 ```
