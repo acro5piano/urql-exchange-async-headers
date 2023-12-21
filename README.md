@@ -1,9 +1,9 @@
 # urql-exchange-async-headers
 
-[![test](https://github.com/acro5piano/urql-exchange-async-headers/actions/workflows/test.yml/badge.svg)](https://github.com/acro5piano/knex-little-logger/actions/workflows/test.yml)
+[![test](https://github.com/acro5piano/urql-exchange-async-headers/actions/workflows/test.yml/badge.svg)](https://github.com/acro5piano/urql-exchange-async-headers/actions/workflows/test.yml)
 ![npm (tag)](https://img.shields.io/npm/v/urql-exchange-async-headers/latest)
 
-A urql exchange which adds headers from promise value.
+A thin urql exchange which adds headers from promise value, using `mapExchange` from the official URQL package.
 
 # Install
 
