@@ -3,7 +3,7 @@ import 'isomorphic-unfetch'
 import test from 'ava'
 
 import { asyncHeaderExchange } from '../src'
-import { createClient, cacheExchange, fetchExchange } from 'urql'
+import { createClient, cacheExchange, fetchExchange } from '@urql/core'
 import getPort from 'get-port'
 import { createServer, IncomingMessage } from 'http'
 
