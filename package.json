@@ -1,6 +1,6 @@
 {
   "name": "urql-exchange-async-headers",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "git@github.com:acro5piano/urql-exchange-async-headers",
@@ -8,6 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.8.3",
+    "@urql/core": "^5.1.0",
     "ava": "^5.3.1",
     "esbuild": "^0.19.4",
     "esbuild-register": "^3.3.2",
@@ -16,7 +17,6 @@
     "isomorphic-unfetch": "^4.0.2",
     "react": "^18.1.0",
     "typescript": "^5.2.2",
-    "@urql/core": "^5.1.0",
     "wonka": "^6.3.4"
   },
   "files": [
