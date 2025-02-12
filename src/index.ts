@@ -1,4 +1,4 @@
-import { Exchange, mapExchange, Operation, makeOperation } from 'urql'
+import { Exchange, mapExchange, Operation, makeOperation } from '@urql/core'
 
 type GetHeaders = (operation: Operation) => Promise<Record<string, string>>
 
