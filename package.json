@@ -16,7 +16,7 @@
     "isomorphic-unfetch": "^4.0.2",
     "react": "^18.1.0",
     "typescript": "^5.2.2",
-    "urql": "^4.0.5",
+    "@urql/core": "^5.1.0",
     "wonka": "^6.3.4"
   },
   "files": [
